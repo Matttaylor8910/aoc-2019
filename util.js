@@ -2,14 +2,14 @@
  * Program to add VERY large numbers in javascript
  * Note - numbers should be passed as strings or numbers.
  * example -
- * add(15, "15");  // returns "30"
+ * add(15, '15');  // returns '30'
  * https://medium.com/@nitinpatel_20236/javascript-adding-extremely-large-numbers-and-extra-long-factorials-229b6055cb1a
  */
 function add(num1, num2) {
   let str1 = String(num1);
   let str2= String(num2);
 
-  let sum = "";  // our result will be stored in a string.
+  let sum = '';  // our result will be stored in a string.
 
   // we'll need these in the program many times.
   let str1Length = str1.length;

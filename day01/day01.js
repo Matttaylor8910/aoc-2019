@@ -36,15 +36,15 @@
 // Your puzzle answer was 4725210.
 
 const fs = require('fs');
-const { add } = require('../shared/util');
+const { add } = require('../util');
 
 /**
  * Given a list of masses as number[], return the total fuel required
  */
 function part1(masses) {
-    return masses
-        .map(mass => getFuel(mass))
-        .reduce((a, b) => add(a, b), 0);
+  return masses
+    .map(mass => getFuel(mass))
+    .reduce((a, b) => add(a, b), 0);
 }
 
 /**
@@ -52,16 +52,16 @@ function part1(masses) {
  * This time, fuel requires fuel, and so on recursively/iteratively
  */
 function part2(masses) {
-    return masses
-        .map(mass => getTotalFuel(mass))
-        .reduce((a, b) => add(a, b), 0);
+  return masses
+    .map(mass => getTotalFuel(mass))
+    .reduce((a, b) => add(a, b), 0);
 }
 
 /**
  * Given mass as a number, return the amount of fuel required
  */
 function getFuel(mass) {
-    return Math.floor(mass / 3) - 2;
+  return Math.floor(mass / 3) - 2;
 }
 
 /**
@@ -70,26 +70,26 @@ function getFuel(mass) {
  * the fuel needed for the mass of the fuel
  */
 function getTotalFuel(mass) {
-    let totalFuel = 0;
+  let totalFuel = 0;
 
-    while (mass > 0) {
-        const fuel = getFuel(mass);
-        if (fuel > 0) {
-            totalFuel = add(fuel, totalFuel);
-        }
-        mass = parseInt(fuel);
+  while (mass > 0) {
+    const fuel = getFuel(mass);
+    if (fuel > 0) {
+      totalFuel = add(fuel, totalFuel);
     }
+    mass = parseInt(fuel);
+  }
 
-    return totalFuel;
+  return totalFuel;
 }
 
 /**
  * Parse the input into a number[]
  */
 function parseInput() {
-    return fs.readFileSync('input/day01.txt', 'utf8')
-        .split('\n')
-        .map(x => parseInt(x));
+  return fs.readFileSync('day01/day01.txt', 'utf8')
+    .split('\n')
+    .map(x => parseInt(x));
 }
 
 // parse input and output answers
