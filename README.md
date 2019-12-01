@@ -1,6 +1,6 @@
 # Advent of Code 2019
 
-This repo will contain my solutions to my answers for [Advent of Code](https://adventofcode.com/) for 2019, some of the code will probably be shitty due to trying to get the answer quickly, but I'll try my best to clean up if I have the energy :)
+This repo will contain my solutions for [Advent of Code](https://adventofcode.com/) for 2019, some of the code will probably be shitty due to trying to get the answer quickly, but I'll try my best to clean up if I have the energy :)
 
 You can run any solution from the root of the project by running:  
 `node day01/day01.js`
