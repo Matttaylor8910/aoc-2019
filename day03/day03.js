@@ -19,7 +19,7 @@ function part1(wires) {
     })
     .value();
 
-  console.log(distances);
+  // console.log(distances);
   return Math.min(...distances);
 }
 
@@ -40,7 +40,7 @@ function part2(wires) {
     })
     .value();
 
-  console.log(steps);
+  // console.log(steps);
   return Math.min(...steps);
 }
 
@@ -58,32 +58,29 @@ function addWireToMap(map, wire, wireNum) {
       // handle 4 directions
       if (direction === 'U') {
         y -= amount;
-        for (let i = y; i <= prevY; i++) {
-          incrementPosition(map, x, i, wireNum, steps + i);
+        for (let i = prevY; i > y; i--) {
+          incrementPosition(map, x, i, wireNum, steps++);
         }
       }
       else if (direction === 'R') {
         x += amount;
-        for (let i = prevX; i <= x; i++) {
-          incrementPosition(map, i, y, wireNum, steps + i);
+        for (let i = prevX; i < x; i++) {
+          incrementPosition(map, i, y, wireNum, steps++);
         }
       }
       else if (direction === 'D') {
         y += amount;
-        for (let i = prevY; i <= y; i++) {
-          incrementPosition(map, x, i, wireNum, steps + i);
+        for (let i = prevY; i < y; i++) {
+          incrementPosition(map, x, i, wireNum, steps++);
         }
       }
       else if (direction === 'L') {
         x -= amount;
-        for (let i = x; i <= prevX; i++) {
-          incrementPosition(map, i, y, wireNum, steps + i);
+        for (let i = prevX; i > x; i--) {
+          incrementPosition(map, i, y, wireNum, steps++);
         }
       }
       else console.log('ERROR');
-
-      // always increment steps
-      steps += amount;
 
       // console.log(map);
     }
@@ -110,7 +107,7 @@ function incrementPosition(map, x, y, wireNum, steps) {
  * Parse the input into a number[]
  */
 function parseInput() {
-  return fs.readFileSync('day03/test2.txt', 'utf8')
+  return fs.readFileSync('day03/day03.txt', 'utf8')
     .split('\n')
     .map(x => {
       return x.split(',');
