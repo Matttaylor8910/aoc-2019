@@ -1,3 +1,5 @@
+const {groupBy} = require('lodash');
+
 function part1(low, high) {
   return findNumMatches(low, high, (i) => { 
     return neverDecrease(i) && hasAdjacentRepeats(i);
@@ -37,13 +39,10 @@ function neverDecrease(num) {
  * Return true when any repeats are found in a number such as 11112 or 33 or 4445
  */
 function hasAdjacentRepeats(num) {
-  const digits = String(num).split('').map(x => parseInt(x));
-  let last;
-  for (const digit of digits) {
-    if (last === digit) return true;
-    last = digit;
-  }
-  return false
+  const digits = String(num).split('');
+  const counts = Object.values(groupBy(digits))
+    .map(x => x.length);
+  return Math.max(...counts) >= 2;
 }
 
 /**
@@ -53,19 +52,10 @@ function hasAdjacentRepeats(num) {
  * a larger group of matching digits
  */
 function hasDouble(num) {
-  const digits = String(num).split('').map(x => parseInt(x));
-  let last;
-  let count = 1;
-  for (const digit of digits) {
-    if (last === digit) count++;
-    else {
-      // a double was found 
-      if (count === 2) return true;
-      count = 1; 
-    }
-    last = digit;
-  }
-  return count === 2;
+  const digits = String(num).split('');
+  return Object.values(groupBy(digits))
+    .map(x => x.length)
+    .includes(2);
 }
 
 // pass input and output answers
