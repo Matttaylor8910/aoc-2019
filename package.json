@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/Matttaylor8910/aoc-2019#readme",
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.19"
   }
 }
